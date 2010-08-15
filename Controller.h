@@ -50,5 +50,6 @@ int callback(int device, Finger *data, int nFingers, double timestamp, int frame
 - (void) start;
 - (void)setMode:(BOOL)click;
 - (BOOL)getClickMode;
+- (void)registerDevices;
 
 @end

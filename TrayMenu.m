@@ -35,6 +35,11 @@
 	[self setChecks];
 }
 
+- (void)redetectDevices:(id)sender
+{
+	[myController registerDevices];
+}
+
 - (void)setChecks
 {
 	if([myController getClickMode])
@@ -67,12 +72,18 @@
 						keyEquivalent:@""];
 	[menuItem setTarget:self];
 	
+	// Add 3 finger click
 	clickItem = [menu addItemWithTitle:@"3 Finger Click" action:@selector(setClick:) keyEquivalent:@""];
 	[clickItem setTarget:self];
 	
+	// Add 3 finger tap
 	tapItem = [menu addItemWithTitle:@"3 Finger Tap" action:@selector(setTap:) keyEquivalent:@""];
 	[tapItem setTarget:self];
 	[self setChecks];
+	
+	// Add redetect devices
+	redetectItem = [menu addItemWithTitle:@"Redetect Devices" action:@selector(redetectDevices:) keyEquivalent:@""];
+	[redetectItem setTarget:self];
 	
 	// Add Separator
 	[menu addItem:[NSMenuItem separatorItem]];

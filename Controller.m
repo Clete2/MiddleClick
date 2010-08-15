@@ -28,17 +28,8 @@
     [NSApplication sharedApplication];
 	
 	
-	//Get list of all multi touch devices
-	NSMutableArray* deviceList = (NSMutableArray*)MTDeviceCreateList(); //grab our device list
-	
-	
-	//Iterate and register callbacks for multitouch devices.
-	for(int i = 0; i<[deviceList count]; i++) //iterate available devices
-	{
-		MTRegisterContactFrameCallback((MTDeviceRef)[deviceList objectAtIndex:i], callback); //assign callback for device
-		MTDeviceStart((MTDeviceRef)[deviceList objectAtIndex:i]); //start sending events
-	}
-	
+	// Register devices
+	[self registerDevices];
 	
 	//register a callback to know when osx come back from sleep
 	WakeObserver *wo = [[WakeObserver alloc] init];
@@ -51,6 +42,20 @@
     [NSApp run];
 	
 	[pool release];
+}
+
+- (void)registerDevices
+{
+	//Get list of all multi touch devices
+	NSMutableArray* deviceList = (NSMutableArray*)MTDeviceCreateList(); //grab our device list
+	
+	
+	//Iterate and register callbacks for multitouch devices.
+	for(int i = 0; i<[deviceList count]; i++) //iterate available devices
+	{
+		MTRegisterContactFrameCallback((MTDeviceRef)[deviceList objectAtIndex:i], callback); //assign callback for device
+		MTDeviceStart((MTDeviceRef)[deviceList objectAtIndex:i]); //start sending events
+	}
 }
 
 - (BOOL)getClickMode

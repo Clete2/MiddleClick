@@ -14,9 +14,11 @@
 	Controller *myController;
 	NSMenuItem *tapItem;
 	NSMenuItem *clickItem;
+	NSMenuItem *redetectItem;
 }
 - (id)initWithController:(Controller *)ctrl;
 - (void)setChecks;
 - (void)setClick:(id)sender;
 - (void)setTap:(id)sender;
+- (void)redetectDevices:(id)sender;
 @end
